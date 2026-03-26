@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Cyberpunk Neon</title><style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: black;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+header {
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  font-size: 3em;
+  color: #00f0ff;
+  text-shadow: 0 0 20px #00f0ff;
+}
+
+.card {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 20px #00f0ff;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+button {
+  background: transparent;
+  border: 2px solid #00f0ff;
+  color: #00f0ff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00f0ff;
+  color: black;
+}
+
+#game {
+  text-align: center;
+}
+
+.robot {
+  font-size: 70px;
+  cursor: pointer;
+}
+
+#chatbox {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 260px;
+  background: rgba(0,0,0,0.8);
+  padding: 10px;
+  border-radius: 15px;
+}
+
+#messages {
+  height: 150px;
+  overflow-y: auto;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+}
+</style></head><body><canvas id="bg"></canvas>
+
+<header>
+  <img src="logo.png" alt="Logo Bella" 
+       style="width:120px; border-radius:50%; box-shadow:0 0 20px #00f0ff; margin-bottom:15px;">
+<h1>⚡ AI CYBER WORLD ⚡</h1>
+<p>Website Futuristik Super Keren</p>
+</header><div class="card">
+<h2>🤖 AI Awal</h2>
+<p>Dimulai dari teori Alan Turing tentang mesin pintar.</p>
+</div><div class="card">
+<h2>💻 Machine Learning</h2>
+<p>AI belajar dari data dan pengalaman manusia.</p>
+</div><div class="card">
+<h2>🚀 AI Modern</h2>
+<p>Digunakan di chatbot, mobil pintar, dan teknologi masa kini.</p>
+</div><div id="game">
+<h2>🎮 Game: Klik Robot</h2>
+<div class="robot" onclick="clickRobot()">🤖</div>
+<p>Score: <span id="score">0</span></p>
+</div><div id="chatbox">
+<div id="messages"></div>
+<input id="input" placeholder="Tanya AI..." onkeydown="if(event.key==='Enter') reply()">
+</div><script>
+// PARTICLE BACKGROUND
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<80;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2,
+    d: Math.random()*1
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#00f0ff';
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
+  move();
+}
+
+function move(){
+  particles.forEach(p=>{
+    p.y += p.d;
+    if(p.y>canvas.height){p.y=0;}
+  });
+}
+
+setInterval(draw,30);
+
+// GAME + SOUND
+let score = 0;
+let sound = new Audio('https://www.soundjay.com/buttons/sounds/button-09.mp3');
+
+function clickRobot(){
+  score++;
+  document.getElementById('score').innerText = score;
+  sound.play();
+}
+
+// CHAT AI LEBIH PINTAR
+function reply(){
+  let input = document.getElementById('input');
+  let msg = input.value.toLowerCase();
+  let messages = document.getElementById('messages');
+
+  messages.innerHTML += `<div>👤: ${msg}</div>`;
+
+  let res = "Aku belum paham 😅";
+
+  if(msg.includes('ai')) res = "AI adalah kecerdasan buatan yang meniru manusia.";
+  else if(msg.includes('halo')) res = "Halo! Selamat datang 😎";
+  else if(msg.includes('masa depan')) res = "AI akan mengubah dunia!";
+  else if(msg.includes('siapa kamu')) res = "Aku AI sederhana di website ini 🤖";
+
+  messages.innerHTML += `<div>🤖: ${res}</div>`;
+
+  input.value='';
+  messages.scrollTop = messages.scrollHeight;
+}
+</script><footer style="text-align:center; padding:40px; margin-top:40px; opacity:0.8;">
+  <h2 style="color:#00f0ff; text-shadow:0 0 15px #00f0ff;">✨ Dibuat oleh Bella ✨</h2>
+  <p>
+    Website ini dibuat dengan penuh kreativitas dan semangat untuk menghadirkan tampilan futuristik tentang perkembangan Artificial Intelligence.
+    Bella sebagai pembuat website ini ingin menunjukkan bagaimana teknologi AI terus berkembang dari masa ke masa hingga menjadi bagian penting dalam kehidupan manusia.Dengan desain cyberpunk neon yang modern, website ini tidak hanya memberikan informasi, tetapi juga pengalaman visual yang menarik dan interaktif.
+Mulai dari animasi background, mini game, hingga fitur chat AI sederhana, semua dirancang untuk memberikan kesan teknologi masa depan.
+
+Harapannya, website ini dapat menginspirasi banyak orang untuk lebih mengenal, mempelajari, dan memanfaatkan AI dalam kehidupan sehari-hari.
+
+🚀 Terus berkembang, terus belajar, dan jadilah bagian dari masa depan teknologi!
+
+  </p>
+</footer></body>
+  </html>
